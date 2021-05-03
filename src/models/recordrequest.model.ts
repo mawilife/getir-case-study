@@ -1,5 +1,5 @@
 import { Type } from "class-transformer";
-import { IsDate, IsEmail, isNumber, IsString, Min } from "class-validator";
+import { IsDate, Min } from "class-validator";
 export default class RecordRequestModel {
     constructor(startDate: Date, endDate: Date, minCount: number, maxCount: number) {
         this.startDate = startDate;

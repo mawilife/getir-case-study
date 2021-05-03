@@ -9,11 +9,12 @@ import IRecordRepo from "./repo/irecord.repo";
 import * as swaggerDocument from "./swagger.json"
 import swaggerUi from "swagger-ui-express"
 
-//Dependency injection (it can move to di container)
+//Dependency injection (it can move to dependency injection container)
 import MongoConnection from "./repo/mongo/mongoconnection";
+import recordModel from "./repo/mongo/records/record.model";
 import { RecordRepo } from "./repo/mongo/records/record.repo";
 const dbConnection: IDBConnection = new MongoConnection();
-const recordRepo: IRecordRepo = new RecordRepo()
+const recordRepo: IRecordRepo = new RecordRepo(recordModel);
 //end of di
 
 const app = express();

@@ -6,6 +6,7 @@ export default class MongoConnection implements IDBConnection {
     connect() {
         mongoose.connect(DBConfig.connectionString, { useNewUrlParser: true });
     }
+
     end() {
         mongoose.connection.close();
     }

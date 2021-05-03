@@ -14,7 +14,6 @@ describe('API TEST (e2e)', () => {
             .expect('Content-Type', /json/)
             .then(res => {
                 expect(res.status).toBe(200);
-                console.log(res.body)
                 expect(res.body).toStrictEqual({
                     "code": 1001,
                     "msg": "ValidationError"
@@ -23,7 +22,7 @@ describe('API TEST (e2e)', () => {
             });
     });
 
-    test('/ (POST) Success', (done) => {
+    it('/ (POST) Success', (done) => {
         return supertest(app)
             .post("/")
             .send({

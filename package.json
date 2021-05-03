@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --config ./test/e2e/jest-e2e.json",
+    "test:e2e": "jest --config ./test/e2e/jest-e2e.json",
+    "test:unit": "jest --config ./test/unit/jest-unit.json",
     "build": "npx tsc",
     "start": "npm run build && node ./dist/src/index.js"
   },

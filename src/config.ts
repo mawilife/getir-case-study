@@ -6,4 +6,4 @@ export const DBConfig = Object.seal({
 
 export const CommonConfig = Object.seal({
     port: parseInt(process.env.PORT || "8181"),
-})
+});
