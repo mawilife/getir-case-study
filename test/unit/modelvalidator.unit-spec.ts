@@ -66,7 +66,7 @@ describe('Model Validator Unit Test', () => {
             res = await new TestClass().testFunction(obj);
         });
 
-        it("Should be success", () => {
+        it("Should not be success", () => {
             expect(res.isSuccess).toBe(false);
             expect(res.code).toBe(codes.validation);
             expect(res.msg).toBe(messages.validation);

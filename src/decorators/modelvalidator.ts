@@ -6,7 +6,7 @@ import messages from "../objects/messages";
 
 /**
  * transforms and validates parameter of a function
- * @param modelType type of parameter value
+ * @param modelType type of parameter
  * @returns on success returns original function result, on error return validation ErrorResult  
  */
 export function ModelValidator<T>(modelType: ClassConstructor<T>) {

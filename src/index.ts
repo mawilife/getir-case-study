@@ -1,13 +1,13 @@
 import express from "express";
 import "reflect-metadata";
+import swaggerUi from "swagger-ui-express"
+import * as swaggerDocument from "./swagger.json"
 import { CommonConfig } from "./config";
-import { RecordController } from "./controllers/record.controller";
 import codes from "./objects/codes";
 import messages from "./objects/messages";
+import { RecordController } from "./controllers/record.controller";
 import IDBConnection from "./repo/idbconnection";
 import IRecordRepo from "./repo/irecord.repo";
-import * as swaggerDocument from "./swagger.json"
-import swaggerUi from "swagger-ui-express"
 
 //Dependency injection (it can move to dependency injection container)
 import MongoConnection from "./repo/mongo/mongoconnection";
@@ -43,7 +43,7 @@ app.post("/", async (req, res) => {
     }
 });
 
-app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument)); // for swagger 
 
 export const server = app.listen(CommonConfig.port, '0.0.0.0', () => {
     console.log(`Api started on port: ${CommonConfig.port}`)
