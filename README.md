@@ -3,7 +3,8 @@
   ```bash
     git clone https://github.com/mawilife/getir-case-study.git
     cd getir-case-study
-    npm install```
+    npm install
+    ```
     You should create envoriment file (.env) at project root folder
     Example Envoriment Content:
     ```bash
