@@ -1,4 +1,4 @@
-import  IRecord from "../../../dto/irecord" ;
+import IRecord from "../../../dto/irecord";
 import { Document } from "mongoose";
 
-export default interface IRecordDocument extends Document, IRecord {};
+export default interface IRecordDocument extends Document, IRecord { };

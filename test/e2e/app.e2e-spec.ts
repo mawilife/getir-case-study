@@ -1,34 +1,52 @@
 import supertest from 'supertest';
-import app from '../../src/index';
+import app, { dbcon, server } from '../../src/index';
 
 describe('API TEST (e2e)', () => {
 
-	beforeEach(async () => {
-	});
+    beforeEach(async () => {
+    });
 
-	it('/ (POST) Validation Error', () => {
-		return supertest(app)
-		.post("/")
-		.send({})
-		.set('Accept', 'application/json')
-		.expect('Content-Type', /json/)
-		.expect(200)
-		.expect({
-			"code": 1001,
-			"msg": "ValidationError"
-		});
-	});
-	it('/ (POST) Success', () => {
-		return supertest(app)
-		.post("/")
-		.send({
-			"startDate": "2016-01-26",
-			"endDate": "2018-02-02",
-			"minCount": 2700,
-			"maxCount": 3000
-			})
-		.set('Accept', 'application/json')
-		.expect('Content-Type', /json/)
-		.expect(200)
-	});
+    it('/ (POST) Validation Error', (done) => {
+        return supertest(app)
+            .post("/")
+            .send({})
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .then(res => {
+                expect(res.status).toBe(200);
+                console.log(res.body)
+                expect(res.body).toStrictEqual({
+                    "code": 1001,
+                    "msg": "ValidationError"
+                });
+                done();
+            });
+    });
+
+    test('/ (POST) Success', (done) => {
+        return supertest(app)
+            .post("/")
+            .send({
+                "startDate": "2016-01-26",
+                "endDate": "2018-02-02",
+                "minCount": 0,
+                "maxCount": 0
+            })
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .then(res => {
+                expect(res.status).toBe(200);
+                expect(res.body).toEqual(
+                    expect.objectContaining({
+                        "code": 0,
+                        "msg": "Success"
+                    })
+                );
+                done();
+            });
+    });
+    afterAll(() => {
+        dbcon.end();
+        server.close();
+    })
 });

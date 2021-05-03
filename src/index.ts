@@ -6,12 +6,13 @@ import codes from "./objects/codes";
 import messages from "./objects/messages";
 import IDBConnection from "./repo/idbconnection";
 import IRecordRepo from "./repo/irecord.repo";
-
+import * as swaggerDocument from "./swagger.json"
+import swaggerUi from "swagger-ui-express"
 
 //Dependency injection (it can move to di container)
 import MongoConnection from "./repo/mongo/mongoconnection";
 import { RecordRepo } from "./repo/mongo/records/record.repo";
-const dbConnection :IDBConnection = new MongoConnection();
+const dbConnection: IDBConnection = new MongoConnection();
 const recordRepo: IRecordRepo = new RecordRepo()
 //end of di
 
@@ -41,10 +42,11 @@ app.post("/", async (req, res) => {
     }
 });
 
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-
-app.listen(CommonConfig.port, '0.0.0.0', () => {
-    console.log(`Api started on port: ${ CommonConfig.port }`)
+export const server = app.listen(CommonConfig.port, '0.0.0.0', () => {
+    console.log(`Api started on port: ${CommonConfig.port}`)
 });
 
 export default app;
+export const dbcon = dbConnection;

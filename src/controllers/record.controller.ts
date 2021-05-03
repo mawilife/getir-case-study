@@ -5,8 +5,8 @@ import { Result } from "../dto/result";
 import RecordRequestModel from "../models/recordrequest.model";
 import IRecordRepo from "../repo/irecord.repo";
 
-export class RecordController{
-    constructor(private readonly recordRepo: IRecordRepo){}
+export class RecordController {
+    constructor(private readonly recordRepo: IRecordRepo) { }
 
     @ModelValidator(RecordRequestModel)
     async filterByDateAndCount(model: RecordRequestModel): Promise<Result<IRecord[]>> {

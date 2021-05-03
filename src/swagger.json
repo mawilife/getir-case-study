@@ -1,0 +1,103 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Getir Case Study API",
+        "description": "Express JS Api.",
+        "contact": {
+            "name": "Raşit Şakar",
+            "email": "rasitsakar94@gmail.com"
+        }
+    },
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/": {
+            "post": {
+                "summary": "Get Filtered Records",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "RecordRequestModel",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/RecordRequestModel"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/RecordResultModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "RecordRequestModel": {
+            "type": "object",
+            "properties": {
+                "startDate": {
+                    "type": "string",
+                    "required": true,
+                    "default": "2016-01-26"
+                },
+                "endDate": {
+                    "type": "string",
+                    "required": true,
+                    "default": "2018-02-02"
+                },
+                "minCount": {
+                    "type": "integer",
+                    "required": true,
+                    "default": 2700
+                },
+                "maxCount": {
+                    "type": "integer",
+                    "required": true,
+                    "default": 3000
+                }
+            }
+        },
+        "RecordResultModel": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "msg": {
+                    "type": "string"
+                },
+                "records": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "key": {
+                                "type": "string"
+                            },
+                            "createdAt": {
+                                "type": "string"
+                            },
+                            "totalCount": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

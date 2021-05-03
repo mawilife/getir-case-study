@@ -1,3 +1,4 @@
-export default interface IDBConnection{
+export default interface IDBConnection {
     connect(): void;
+    end(): void;
 }
