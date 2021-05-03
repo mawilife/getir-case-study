@@ -4,6 +4,13 @@
     git clone https://github.com/mawilife/getir-case-study.git
     cd getir-case-study
     npm install```
+    You should create envoriment file (.env) at project root folder
+    Example Envoriment Content:
+    ```bash
+      NODE_ENV=development
+      MONGO_DB_CONNECTION_STRING=[MONGO_CONNECTION_STRING]
+      PORT=8181
+    ```
  
 - ### Test
   - #### Unit Test
